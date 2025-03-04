@@ -44,14 +44,24 @@ void lexical_analyzer(char *file_name){
 			buffer[index++] = ch;
 		} 
 		else {
-			buffer[index] = '\0';
-			struct Token token = tokenize(buffer, line_number);
-			printf("Token: %-12s Type: %d\n", token.value, token.type);
-			memset(buffer, 0, sizeof(buffer)); 
-			index = 0;
+			if (index > 0) {
+				buffer[index] = '\0';
+				struct Token token = tokenize(buffer, line_number);
+				printf("Token: %-12s Type: %d\n", token.value, token.type);
+				memset(buffer, 0, sizeof(buffer));
+				index = 0;
+			}
+
+			if (strchr("+-*/=;()", ch)) {
+				buffer[0] = ch;
+				buffer[1] = '\0';
+				struct Token token = tokenize(buffer, line_number);
+				printf("Token: %-12s Type: %d\n", token.value, token.type);
+			}
+
 		}
 
-		line_number++;
+		if(ch == '\n') line_number++;
 	}
 
 	fclose(file);
