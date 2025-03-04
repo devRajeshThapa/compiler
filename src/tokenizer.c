@@ -6,8 +6,9 @@
 #include "token.h"
 #include "error_handler.h"
 
+const char *keywords[] = {"int", "string", "if", "else", "while", "break", "continue", "switch", "for"};
+
 bool is_keyword(char* buffer){
-	char *keywords[] = {"int", "string", "bool", "if", "else", "return", "while"};
 	int keyword_count = sizeof(keywords)/sizeof(keywords[0]);
 
 	for(int i=0; i<keyword_count; i++){
@@ -25,8 +26,10 @@ struct Token tokenize(char *buffer, int line_number){
 
 	if(is_keyword(buffer)){
 		token.type = T_KEYWORD;
-	}else if(strchr("+-*=<>", buffer[0])){
+	}else if(strchr(OPERATORS, buffer[0])){
 		token.type = T_OPERATOR;
+	}else if(strchr(DELIMITERS, buffer[0])){
+		token.type = T_DELIMITER;	
 	}else if(buffer[0] == '"' && buffer[strlen(buffer)-1] == '"'){
 		token.type = T_STRING;
 	}else if(isalpha(buffer[0])){
