@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "error_handler.h"
-#include "lexical_analyzer.h"
+#include "lexer.h"
 
 int main(int argc, char *argv[]){
 	if(argc < 2){

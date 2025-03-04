@@ -22,3 +22,7 @@ void handle_file_doesnot_exist(char *file_name){
 	exit(EXIT_FAILURE);
 
 }
+
+void handle_unexpected_token(char *buffer, int line_number){
+	printf("Error: Unexpected token %s at line number %d", buffer, line_number);
+}
