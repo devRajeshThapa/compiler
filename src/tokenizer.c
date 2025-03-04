@@ -8,7 +8,7 @@
 
 bool is_keyword(char* buffer){
 	char *keywords[] = {"int", "string", "bool", "if", "else", "return", "while"};
-	int keyword_count = 7;
+	int keyword_count = sizeof(keywords)/sizeof(keywords[0]);
 
 	for(int i=0; i<keyword_count; i++){
 		if(strcmp(buffer, keywords[i]) == 0){
