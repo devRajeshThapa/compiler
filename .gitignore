@@ -1,7 +1,22 @@
-build/
+# Build folder
+build
 
-dist/
+# Dist folder
+dist
 
+# Program output
 *.out
 *.o
 *.exe
+
+# Vim swap files
+*.swp
+*.swo
+
+# Vim backup files
+*.bak
+*.~*
+*.un~
+
+# Vim session files
+*.viminfo
