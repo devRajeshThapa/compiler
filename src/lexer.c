@@ -7,6 +7,7 @@
 #include "lexer.h"
 #include "error_handler.h"
 #include "token.h"
+#include "tokenizer.h"
 
 void lexical_analyzer(char *file_name){
 	FILE* file = fopen(file_name, "r");
@@ -44,7 +45,7 @@ void lexical_analyzer(char *file_name){
 		} 
 		else {
 			buffer[index] = '\0';
-			struct Token token = tokenize(buffer);
+			struct Token token = tokenize(buffer, line_number);
 			printf("Token: %-12s Type: %d\n", token.value, token.type);
 			memset(buffer, 0, sizeof(buffer)); 
 			index = 0;
@@ -53,7 +54,6 @@ void lexical_analyzer(char *file_name){
 		line_number++;
 	}
 
+	fclose(file);
 }
 
-fclose(file);
-}
